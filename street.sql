@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2020 at 11:08 AM
+-- Generation Time: May 21, 2020 at 07:34 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fullstoredb`
+-- Database: `street`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,13 @@ CREATE TABLE `auth_group` (
   `name` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `auth_group`
+--
+
+INSERT INTO `auth_group` (`id`, `name`) VALUES
+(1, 'Customer');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,15 @@ CREATE TABLE `auth_group_permissions` (
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`) VALUES
+(2, 1, 32),
+(3, 1, 36),
+(1, 1, 48);
 
 -- --------------------------------------------------------
 
@@ -136,8 +152,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$180000$afgFE9toyawq$Ds22NUyIgQAOS0rDh3Q7Fx5ohSdTKJg3f6jTfOWJrXM=', '2020-05-13 07:39:04.267918', 1, 'admin', '', '', '', 1, 1, '2020-05-13 07:38:47.932032'),
-(2, 'pbkdf2_sha256$180000$0vOOMpoCtW1b$2bBzynujhrRXq5Il+o1rACuR9R1qLm3P6PCdCxRmR6g=', '2020-05-13 08:44:02.460822', 0, 'aisoonken', 'Aisoon', 'Timsri', 'Kenshin_z00@hotmail.com', 0, 1, '2020-05-13 08:35:39.951932');
+(1, 'pbkdf2_sha256$180000$afgFE9toyawq$Ds22NUyIgQAOS0rDh3Q7Fx5ohSdTKJg3f6jTfOWJrXM=', '2020-05-21 17:31:02.575011', 1, 'admin', '', '', '', 1, 1, '2020-05-13 07:38:47.932032');
 
 -- --------------------------------------------------------
 
@@ -175,14 +190,6 @@ CREATE TABLE `cart` (
   `date_added` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `cart_id`, `date_added`) VALUES
-(1, 'adep0bdwazjgvwj8zyro2hfajohi198j', '2020-05-13 08:37:50.282522'),
-(2, 'vwcuspiesfaz6gvotvqodkg43ebjnoee', '2020-05-13 08:44:06.544621');
-
 -- --------------------------------------------------------
 
 --
@@ -196,13 +203,6 @@ CREATE TABLE `cartitem` (
   `cart_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cartitem`
---
-
-INSERT INTO `cartitem` (`id`, `quantity`, `active`, `cart_id`, `product_id`) VALUES
-(1, 1, 1, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,29 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (20, '2020-05-13 08:31:11.179942', '4', 'Sock', 1, '[{\"added\": {}}]', 7, 1),
 (21, '2020-05-13 08:32:01.811795', '15', 'STANCE PENNYWISE BLACK', 1, '[{\"added\": {}}]', 8, 1),
 (22, '2020-05-13 08:32:39.604224', '16', 'STANCE VINTAGE DISNEY BLUE', 1, '[{\"added\": {}}]', 8, 1),
-(23, '2020-05-13 08:33:46.247547', '17', 'STANCE LOVER LOSER BLACK', 1, '[{\"added\": {}}]', 8, 1);
+(23, '2020-05-13 08:33:46.247547', '17', 'STANCE LOVER LOSER BLACK', 1, '[{\"added\": {}}]', 8, 1),
+(24, '2020-05-20 16:38:40.408725', '1', 'Customer', 1, '[{\"added\": {}}]', 3, 1),
+(25, '2020-05-21 17:31:33.214314', '11', 'aisoonken70', 3, '', 4, 1),
+(26, '2020-05-21 17:31:38.774268', '12', 'aisoonken71', 3, '', 4, 1),
+(27, '2020-05-21 17:31:42.822464', '13', 'aisoonken72', 3, '', 4, 1),
+(28, '2020-05-21 17:31:47.125252', '14', 'aisoonken73', 3, '', 4, 1),
+(29, '2020-05-21 17:31:51.581526', '10', 'aisoonken80', 3, '', 4, 1),
+(30, '2020-05-21 17:31:56.086930', '9', 'aisoonken90', 3, '', 4, 1),
+(31, '2020-05-21 17:32:00.324809', '8', 'aisoonken95', 3, '', 4, 1),
+(32, '2020-05-21 17:32:03.962779', '7', 'aisoonken96', 3, '', 4, 1),
+(33, '2020-05-21 17:32:28.505183', '1', 'ADIDAS SUPERSTAR LACELESS', 3, '', 12, 1),
+(34, '2020-05-21 17:32:30.952235', '2', 'ADIDAS Y-3 BELT STOKHA', 3, '', 12, 1),
+(35, '2020-05-21 17:32:33.848918', '3', 'ADIDAS SUPERSTAR LACELESS', 3, '', 12, 1),
+(36, '2020-05-21 17:32:40.592973', '4', 'ADIDAS SUPERSTAR LACELESS', 3, '', 12, 1),
+(37, '2020-05-21 17:32:51.499576', '1', '1', 3, '', 11, 1),
+(38, '2020-05-21 17:32:59.419319', '2', '2', 3, '', 11, 1),
+(39, '2020-05-21 17:33:02.177642', '3', '3', 3, '', 11, 1),
+(40, '2020-05-21 17:33:04.937335', '4', '4', 3, '', 11, 1),
+(41, '2020-05-21 17:33:12.310437', '1', 'adep0bdwazjgvwj8zyro2hfajohi198j', 3, '', 9, 1),
+(42, '2020-05-21 17:33:15.152823', '2', 'vwcuspiesfaz6gvotvqodkg43ebjnoee', 3, '', 9, 1),
+(43, '2020-05-21 17:33:18.922158', '3', 'ro9tabrs1zc0rke2revykrqo08x902ee', 3, '', 9, 1),
+(44, '2020-05-21 17:33:21.650284', '4', 'kdarskh668v10lkm0313055kunhpvayo', 3, '', 9, 1),
+(45, '2020-05-21 17:33:25.252271', '5', 'ijkxs8s3rtpd9ci2vak2l6i52xgb5j02', 3, '', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +360,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('vwcuspiesfaz6gvotvqodkg43ebjnoee', 'NzI2YjUwYzgwMDE3MTkwODVkNDc4ZWM4ZDc2MzAzYjE5ZTEwYTkzYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0ZDZmZDNiOGU0YjVkN2NiNTg1MTJhMmNjZGU0ZTg3MWMxMzUzNWY5In0=', '2020-05-27 08:44:02.464817');
+('r6i2ixhbwsnrss4ex43k5kwyl30pi602', 'OGZjODJhNWE5OTExMjk4NWYzZTY1NTZmMjFiY2M2MTIyMDg4MjFkMzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxNWI4NmYzM2JjM2IwZWFiY2ExZWZlZGI3NDNmZWVkNmZjNzQ2OWRiIn0=', '2020-06-04 17:31:02.579002');
 
 -- --------------------------------------------------------
 
@@ -359,13 +381,6 @@ CREATE TABLE `order` (
   `updated` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `order`
---
-
-INSERT INTO `order` (`id`, `name`, `address`, `city`, `postcode`, `total`, `email`, `token`, `created`, `updated`) VALUES
-(1, 'Aisoon Timsri', '419/1-2 หมู่3 หอพักชัยพร ซอยเกกีงาม1 ถนนฉลองกรุง1', 'Lat Krabang', '10520', '2800.00', 'kenshin_z00@hotmail.com', 'tok_1GiGEXKpcqq2sTbm9no2xodv', '2020-05-13 08:46:36.303919', '2020-05-13 08:46:36.307909');
-
 -- --------------------------------------------------------
 
 --
@@ -381,13 +396,6 @@ CREATE TABLE `orderitem` (
   `created` datetime(6) NOT NULL,
   `updated` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `orderitem`
---
-
-INSERT INTO `orderitem` (`id`, `product`, `quantity`, `price`, `order_id`, `created`, `updated`) VALUES
-(1, 'ADIDAS SUPERSTAR LACELESS', 1, '2800.00', 1, '2020-05-13 08:46:36.312929', '2020-05-13 08:46:36.314890');
 
 -- --------------------------------------------------------
 
@@ -437,7 +445,7 @@ CREATE TABLE `store_product` (
 
 INSERT INTO `store_product` (`id`, `name`, `slug`, `description`, `price`, `image`, `stock`, `available`, `created`, `updated`, `category_id`) VALUES
 (1, 'PLATFORM66 ALEXFACE SKATEBOARD MULTI FACE', 'alex-face-board', 'ไอเทมพิเศษจากงาน PLATFORM66 กับแผ่นสเก็ตบอร์ดดีไซน์พิเศษที่จับเอา Siamese Cats คาแร็คเตอร์ที่ออกแบบโดย Alex Face เพื่องาน PLATFORM66 โดยเฉพาะมาวาดลวดลาย (1 เซ็ต มี 3 แผ่น)', '5700.00', 'product/al3_2.jpg', 8, 1, '2020-05-13 07:54:56.616125', '2020-05-13 07:56:29.725113', 1),
-(2, 'ADIDAS Y-3 BELT STOKHA', 'ADIDAS-Y-3-BELT', 'Understated in typical Y-3 style, this black belt is simply styled with contrast branding at the edge. Constructed from a durable poly-nylon blend and secured with no-frills D-ring hardware, it’ll effortlessly see you through this season and into the future.', '2790.00', 'product/y-3.jpg', 5, 1, '2020-05-13 07:56:05.543285', '2020-05-13 07:56:05.543285', 1),
+(2, 'ADIDAS Y-3 BELT STOKHA', 'ADIDAS-Y-3-BELT', 'Understated in typical Y-3 style, this black belt is simply styled with contrast branding at the edge. Constructed from a durable poly-nylon blend and secured with no-frills D-ring hardware, it’ll effortlessly see you through this season and into the future.', '2790.00', 'product/y-3.jpg', 4, 1, '2020-05-13 07:56:05.543285', '2020-05-20 14:48:50.179217', 1),
 (3, 'MIGHTY JAXX ALEX FACE LIGHTNING CAT BROWN', 'MIGHTY-JAXX-ALEX-FACE-LIGHTNING-CAT-BROWN', 'ไอเทมสุดพิเศษจากการร่วมงานระหว่าง Mighty Jaxx และ Alex Face ที่นำเอาคาแรกเตอร์ Siamese Cats ที่ออกแบบมาเพื่องาน PLATFORM66 มาสร้างสรรค์เป็นฟิกเกอร์สุดเท่! โดยจะมีด้วยกันถึง 2 สี Thunder Cat และ Lighting Cat ซึ่งบรรจุอยู่ในแพ็คเกจกล่องสุดพิเศษ', '8900.00', 'product/mj001-013-1.jpg', 10, 1, '2020-05-13 07:59:00.510756', '2020-05-13 07:59:00.510756', 1),
 (4, 'CROSSPHONE GREEN PANTS CHAIN', 'CROSSPHONE-GREEN-PANTS-CHAIN', '100% Metal', '2190.00', 'product/g1_5_5.jpg', 20, 1, '2020-05-13 07:59:59.665074', '2020-05-13 07:59:59.665074', 1),
 (5, 'RIPNDIP F18 LORD NERMAL UMBRELLA CLEAR', 'RIPNDIP-F18-LORD-NERMAL-UMBRELLA-CLEAR', 'RIP N DIP | Available on March 31, 2018 เตรียมพบกับครั้งแรกของการวางจำหน่ายที่ร้าน CARNIVAL Store ของเรา!! กับ RIP N DIP แบรนด์เสื้อผ้าที่มาพร้อมกับโลโก้ “แมว” สุดกวน ที่ก่อตั้งขึ้นเมื่อปี 2009 โดย Ryan O\'Connor โปรสเกตบอร์ดชาวอเมริกัน จัดเต็มทั้ง Pocket Tee, T-Shirt, L/S Tee, Jacket, Socks และ Accessories สุดจี๊ดอย่าง Umbrella (ร่ม), PIPE และ SLIDES ที่ใครหลายคนรอคอย! พร้อมทั้ง Display สุดกวน', '2290.00', 'product/rnd1701.jpg', 3, 1, '2020-05-13 08:01:17.041381', '2020-05-13 08:01:17.041381', 1),
@@ -448,7 +456,7 @@ INSERT INTO `store_product` (`id`, `name`, `slug`, `description`, `price`, `imag
 (10, 'PILLS', 'PILLS', 'Crep Protect Pill – The Ultimate Shoe Freshener\r\n\r\nไอเท็มใหม่ล่าสุดกับ \"แคปซูล\" สำหรับรองเท้าผ้าใบ ช่วยลดกลิ่นอับชื้นภายในรองเท้า และกลิ่นต่างๆ ที่ไม่พึงประสงค์\r\n\r\nภายในแคปซูลประกอบด้วย ZEOLITE แร่ภูเขาไฟธรรมชาติที่ช่วยลดความอับชื้น เพิ่มกลิ่นหอมภายในรองเท้า และ NShield สารที่ช่วยลดการก่อเกิดของแบคทีเรีย และเชื้อโรคต่างๆ ซึ่งเป็นต้นเหตุของกลิ่น \r\n\r\nเพียงบิดเพื่อเปิดแคปซูล และนำไปใส่ในรองเท้าคู่ที่ต้องการ (ประมาณ 1-2 ชั่วโมง หรือจนกว่ากลิ่นไม่พึงประสงค์จะหมดไป) หลังการใช้งาน \"ปิดแคปซูล\" เพื่อยืดอายุการใช้งาน (สามารถใช้งานได้ประมาณ 3 เดือน หรือจนกว่ากลิ่นหอมจะหมด) *ขึ้นอยู่กับการใช้งาน', '450.00', 'product/1_29_2_6.jpg', 20, 1, '2020-05-13 08:19:35.728343', '2020-05-13 08:19:35.728343', 2),
 (11, 'NIKE W AIR MAX 2090', 'NIKE-W-AIR-MAX-2090', 'A FUTURISTIC LEAP FORWARD.\r\n\r\nBring the past into the future with the Nike Air Max 2090, a bold look inspired by the DNA of the iconic Air Max 90. Brand-new Nike Air cushioning underfoot adds unparalleled comfort while transparent knit and vibrantly colored textiles on the upper blend with timeless OG features for an edgy, modernized look.\r\n\r\n- More Air underfoot creates a softer ride while 360 degrees of ribbed, translucent rubber frames your air for a bold look.\r\n- The internal booty construction and padded heel feels soft and comfortable while letting you mix up how you wear your sneakers.\r\n- The new speed-lacing system lets you quickly personalize your fit and get going.\r\n- The faux-Waffle sole has large flex grooves, mixing heritage style with a modern design.\r\n\r\nMore Details\r\n\r\n- Springy foam midsole feels soft and comfortable\r\n\r\n- Rubber sole adds traction and durability\r\n\r\n- Pull tab\r\n\r\n- \"AIR\" logo is recessed into heel for a lasting look\r\n\r\n- Not intended for use as Personal Protective Equipmen', '5200.00', 'product/ct7698-100-1.jpg', 10, 1, '2020-05-13 08:24:20.484944', '2020-05-13 08:24:20.484944', 3),
 (12, 'NIKE W AIR MAX 97', 'NIKE-W-AIR-MAX-97', 'Offering the streamlined Air Max 97 to the female sneakerhead, this iteration from Nike adds delicate pastel hues to the iconic silhouette. Dressed in a combination that’s sure to be a hit, the usual mesh and leather upper is realised in white and accented through hits of bleached coral, while a plush full-length Air unit completes the sneaker and delivers comfort and style in equal measures.\r\n\r\n- Mesh Uppers\r\n- Leather Overlays\r\n- Swoosh Branding\r\n- Tongue & Heel Pull Tabs\r\n- Max Air Cushioning\r\n- Foam Midsole\r\n- Rubber Outsole', '5800.00', 'product/104_1_1.jpg', 13, 1, '2020-05-13 08:25:05.208679', '2020-05-13 08:25:05.208679', 3),
-(13, 'ADIDAS SUPERSTAR LACELESS', 'ADIDAS-SUPERSTAR-LACELESS', 'A NEW ERA OF \'NO HASSLE\' LACELESS.\r\n\"We make a good team, my adidas and me.\" Always on point, this slip-on Superstar shoe is back like never before. Follow in the footsteps of \'80s hip hop royalty and do the New York b-boy look entirely your way.\r\n\r\nHowever that plays out – chic blazer suits, scruffy jeans and tee – you\'ll make it look easy in this cool, casual remake. Ahead of the 2020 All-Star Weekend, we\'ve rebuilt the shoe with a fat tongue for extra slam dunk. Step into the future of no fuss comfort without sacrificing on old-school class.\r\n\r\n- Slip-on\r\n\r\n- Leather upper\r\n\r\n- Laceless shell-toe trainers\r\n\r\n- Moulded sockliner and leather lining\r\n\r\n- Rubber outsole', '2800.00', 'product/fv3017.jpg', 10, 1, '2020-05-13 08:25:47.761440', '2020-05-13 08:46:36.320879', 3),
+(13, 'ADIDAS SUPERSTAR LACELESS', 'ADIDAS-SUPERSTAR-LACELESS', 'A NEW ERA OF \'NO HASSLE\' LACELESS.\r\n\"We make a good team, my adidas and me.\" Always on point, this slip-on Superstar shoe is back like never before. Follow in the footsteps of \'80s hip hop royalty and do the New York b-boy look entirely your way.\r\n\r\nHowever that plays out – chic blazer suits, scruffy jeans and tee – you\'ll make it look easy in this cool, casual remake. Ahead of the 2020 All-Star Weekend, we\'ve rebuilt the shoe with a fat tongue for extra slam dunk. Step into the future of no fuss comfort without sacrificing on old-school class.\r\n\r\n- Slip-on\r\n\r\n- Leather upper\r\n\r\n- Laceless shell-toe trainers\r\n\r\n- Moulded sockliner and leather lining\r\n\r\n- Rubber outsole', '2800.00', 'product/fv3017.jpg', 8, 1, '2020-05-13 08:25:47.761440', '2020-05-21 16:19:04.570060', 3),
 (14, 'KITO X QDAP BLACK/WHITE', 'KITO-X-QDAP-BLACK-WHITE', 'ขอแนะนำ ‘Flicker’ รองเท้าแตะรัดสนจากการร่วมงานครั้งพิเศษระหว่าง Kito และ Q Design and Play ที่ออกมาให้เลือกกันถึง 3 รุ่น พร้อมวางจำหน่ายแล้ววันนี้\r\n\r\n• Kito x Q Design and Play ‘FLICKER’\r\n\r\nโปรเจกต์พิเศษระหว่างแบรนด์รองเท้าระดับตำนานอย่าง Kito กับ Q Design and Play แบรนด์สตรีทแวร์สัญชาติไทย ได้ร่วมกันทำรองเท้าแตะรัดสน ดีไซน์ทันสมัย ด้วยแนวคิดผสมผสานความเป็น Sneaker ลงไปวัสดุที่เป็นเอกลักษณ์ของ Kito บริเวณ Upper ทำจากสายทอคุณภาพดี และใช้ EVA ชนิดพิเศษตรงพื้นในรองเท้าที่ให้ความนุ่มสบาย และยังรองรับแรงกระแทกได้อย่างยอดเยี่ยม อีกทั้งยังใช้วัสดุ Phylon ที่มีความยืดหยุ่นสูง รับน้ำหนักของผู้สวมใส่ได้ดีบริเวณ Midsole ปิดท้ายด้วยพื้นรองเท้าที่ทำจาก Blown Rubber ทนทาน และยึดเกาะทุกพื้นผิว ช่วยให้เดินสบายตลอดทั้งวัน', '1890.00', '', 29, 1, '2020-05-13 08:26:48.272209', '2020-05-13 08:26:48.272209', 3),
 (15, 'STANCE PENNYWISE BLACK', 'STANCE-PENNYWISE-BLACK', 'The evil Pennywise smirks from under your shoe, never to be trusted. A deceptively dangerous selection from our new It collection, in honor of the hit 2017 film.\r\n\r\nFEATURES\r\n \r\n- Terry Loop In Forefoot, Heel, And Toe For Cushioning\r\n- Arch Support\r\n- Reinforced Heel & Toe\r\n- Seamless Toe Closure\r\n \r\nPRODUCT CARE\r\n \r\n- Machine Wash in 40 °C / 104 °F.\r\n- Avoid Bleaching or Ironing the socks.\r\n- Socks will last longer if you keep them out of the dryer.', '1000.00', 'product/pennywiseblk1.jpg', 100, 1, '2020-05-13 08:32:01.808803', '2020-05-13 08:32:01.808803', 4),
 (16, 'STANCE VINTAGE DISNEY BLUE', 'STANCE-VINTAGE-DISNEY-BLUE', 'The best way to start your day is putting your best foot forward in the Vintage Disney. Stance was inspired by the ever-optimistic Mickey Mouse and characters to design one of our favorite Disney socks using luxury cotton. Deep heel pockets and seamless toe closures add additional comfort while self-adjusting welt cuffs keep your socks in place.\r\n\r\nFEATURES\r\n \r\n- Terry Loop In Forefoot, Heel, And Toe For Cushioning\r\n- Arch Support\r\n- Reinforced Heel & Toe\r\n- Seamless Toe Closure\r\n \r\nPRODUCT CARE\r\n \r\n- Machine Wash in 40 °C / 104 °F.\r\n- Avoid Bleaching or Ironing the socks.\r\n- Socks will last longer if you keep them out of the dryer.', '1000.00', 'product/vtblue1.jpg', 80, 1, '2020-05-13 08:32:39.602228', '2020-05-13 08:32:39.602228', 4),
@@ -583,13 +591,13 @@ ALTER TABLE `store_product`
 -- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `auth_permission`
@@ -601,13 +609,13 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `auth_user_user_permissions`
@@ -619,19 +627,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cartitem`
 --
 ALTER TABLE `cartitem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -649,13 +657,13 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `store_category`
