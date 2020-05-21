@@ -8,6 +8,8 @@ from django.core.paginator import Paginator,EmptyPage,InvalidPage
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import stripe
+
+
 # Create your views here.
 def index(request,category_slug=None):
     products=None
@@ -171,8 +173,11 @@ def signUpView(request):
             #ดึงข้อมูล user จากฐานข้อมูล
             signUpUser=User.objects.get(username=username)
             #จัด Group
+            # customer_group = get_object_or_404(Group, name="Customer")
             customer_group=Group.objects.get(name="Customer")
             customer_group.user_set.add(signUpUser)
+            
+            return redirect('signIn')
     else :
         form=SignUpForm()
     return render(request,"signup.html",{'form':form})

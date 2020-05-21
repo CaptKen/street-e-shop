@@ -6,6 +6,8 @@
 <div class="container">
     <div class="row my-3">
     {% for product in products %}
+    {% if product.image%}
+
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
           <a href="#"><img class="card-img-top" src="{{product.image.url}}" alt=""></a>
@@ -25,6 +27,7 @@
           </div>
         </div>
       </div>
+      {% endif%}
     {% endfor %}
     </div>
     <nav aria-label="pagination">
